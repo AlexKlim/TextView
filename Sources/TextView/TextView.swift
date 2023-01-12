@@ -276,26 +276,22 @@ public struct TextView: View {
 	}
 	
 	public var body: some View {
-		GeometryReader { geometry in
-			ZStack {
-				self.representable
-				self._placeholder.map { placeholder in
-					Text(placeholder)
-						.font(.init(self.font))
-						.foregroundColor(self.placeholderColor)
-						.padding(.horizontal, self.placeholderHorizontalPadding)
-						.padding(.vertical, self.placeholderVerticalPadding)
-						.frame(
-							width: geometry.size.width,
-							height: geometry.size.height,
-							alignment: self.placeholderAlignment
-						)
-						.onTapGesture {
-							self.isEditing = true
-						}
-				}
+		ZStack {
+			self.representable
+			self._placeholder.map { placeholder in
+				Text(placeholder)
+					.font(.init(self.font))
+					.foregroundColor(self.placeholderColor)
+					.padding(.horizontal, self.placeholderHorizontalPadding)
+					.padding(.vertical, self.placeholderVerticalPadding)
+					.frame(
+						alignment: self.placeholderAlignment
+					)
+					.onTapGesture {
+						self.isEditing = true
+					}
 			}
-		}
+		}		
 	}
 }
 
